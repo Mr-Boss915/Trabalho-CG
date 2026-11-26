@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Archive\src\Camera.cpp" />
+    <ClCompile Include="Archive\src\Color.cpp" />
+    <ClCompile Include="Archive\src\Display.cpp" />
+    <ClCompile Include="Archive\src\Framebuffer.cpp" />
+    <ClCompile Include="Archive\src\Janela.cpp" />
+    <ClCompile Include="Archive\src\main.cpp" />
+    <ClCompile Include="Archive\src\Material.cpp" />
+    <ClCompile Include="Archive\src\PointLight.cpp" />
+    <ClCompile Include="Archive\src\Ray.cpp" />
+    <ClCompile Include="Archive\src\Renderer.cpp" />
+    <ClCompile Include="Archive\src\Scene.cpp" />
+    <ClCompile Include="Archive\src\SceneLoader.cpp" />
+    <ClCompile Include="Archive\src\Sphere.cpp" />
+    <ClCompile Include="Archive\src\Vector3.cpp" />
+    <ClCompile Include="Cone.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
+    <ClCompile Include="ListMesh.cpp" />
+    <ClCompile Include="Mat4.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="SceneConsole.cpp" />
+    <ClCompile Include="SceneEditor.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TransformedObject.cpp" />
+    <ClCompile Include="viewer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Archive\header\Camera.h" />
+    <ClInclude Include="Archive\header\Color.h" />
+    <ClInclude Include="Archive\header\Display.h" />
+    <ClInclude Include="Archive\header\Framebuffer.h" />
+    <ClInclude Include="Archive\header\HitRecord.h" />
+    <ClInclude Include="Archive\header\Janela.h" />
+    <ClInclude Include="Archive\header\Material.h" />
+    <ClInclude Include="Archive\header\Object.h" />
+    <ClInclude Include="Archive\header\PointLight.h" />
+    <ClInclude Include="Archive\header\Ray.h" />
+    <ClInclude Include="Archive\header\Renderer.h" />
+    <ClInclude Include="Archive\header\Scene.h" />
+    <ClInclude Include="Archive\header\SceneLoader.h" />
+    <ClInclude Include="Archive\header\Sphere.h" />
+    <ClInclude Include="Archive\header\stb_image_write.h" />
+    <ClInclude Include="Archive\header\Vector3.h" />
+    <ClInclude Include="Cone.h" />
+    <ClInclude Include="Cylinder.h" />
+    <ClInclude Include="ListMesh.h" />
+    <ClInclude Include="Mat4.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="SceneConsole.h" />
+    <ClInclude Include="SceneEditor.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TransformedObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Archive\scenes\Testes.txt" />
+    <Text Include="Archive\scenes\scene1.txt" />
+    <Text Include="Archive\scenes\scene2.txt" />
+    <Text Include="Archive\scenes\tarefa2.txt" />
+    <Text Include="Archive\scenes\tarefa3.txt" />
+    <Text Include="Archive\scenes\tarefa4.txt" />
+    <Text Include="Archive\scenes\tarefa5.txt" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{b339df07-6fe1-4ef6-80c7-d88332fd2207}</ProjectGuid>
+    <RootNamespace>TarefasCG</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Mr. Boss\Documents\GLM 1.0.3 source code\g-truc-glm-8d1fd52\glm;C:\Users\Mr. Boss\Documents\glew-2.3.1-win32\glew-2.3.1\include;C:\Users\Mr. Boss\Documents\glad\include;C:\Users\Mr. Boss\Documents\glfw-3.5.1.bin.WIN64\glfw-3.5.1.bin.WIN64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Mr. Boss\Documents\glew-2.3.1-win32\glew-2.3.1\lib\Release\x64;C:\Users\Mr. Boss\Documents\glfw-3.5.1.bin.WIN64\glfw-3.5.1.bin.WIN64\lib-vc2026;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Mr. Boss\source\repos\Tarefas CG\Tarefas CG;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\Mr. Boss\Documents\SDL3-3.4.20\include;C:\Users\Mr. Boss\Documents\glew-2.3.1-win32\glew-2.3.1\lib\Release\Win32;C:\Users\Mr. Boss\Documents\glew-2.3.1-win32\glew-2.3.1\include\GL;C:\Users\Mr. Boss\source\repos\Tarefas CG\Tarefas CG;C:\Users\Mr. Boss\source\repos\Tarefas CG\Tarefas CG\Archive\header;C:\Users\Mr. Boss\Documents\glfw-3.5.1.bin.WIN64\glfw-3.5.1.bin.WIN64\lib-vc2026;C:\Users\Mr. Boss\Documents\glfw-3.5.1.bin.WIN64\glfw-3.5.1.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\Mr. Boss\Documents\SDL3-3.4.20\lib\x64;C:\Users\Mr. Boss\Documents\glfw-3.5.1.bin.WIN64\glfw-3.5.1.bin.WIN64\lib-vc2026;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;user32.lib;glfw3.lib;gdi32.lib;shell32.lib;SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
