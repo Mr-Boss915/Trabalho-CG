@@ -1,7 +1,7 @@
 ## Formato da cena
  
 Tokens separados por espaço ou quebra de linha; linhas que começam com `#` são comentários.
- 
+Favor usar quebra de linha para objetos e espaco para transformacoes
 ```
 camera   eye(3) lookAt(3) up(3) fov
 janela   largura altura z          # distância do olho à janela = abs(eye.z - z)
@@ -127,9 +127,40 @@ do objeto para guardar a transformação.
 | `Backspace` | Desfaz as transformações do objeto selecionado ||
 | `Esc` | Sai |
 
+### Requisitos
+
+| Item | Requisito | Peso | Situação | Comentario |
+| --- | --- | --- | --- | --- |
+| 1.1 | Coerência temática | Obrig. | - | - |
+| 1.2 | Todos os objetos no primeiro octante | Obrig. | - | - |
+| 1.3.1 | Esfera, cilindro, cone e malha | Obrig. | Atendido | - |
+| 1.3.2 | Pelo menos quatro materiais distintos | Obrig. | - | - |
+| 1.3.3 | Pelo menos uma textura | Obrig. | - | apenas plano |
+| 1.4.1 | Translação | Obrig. | Atendido | - |
+| 1.4.2 | Rotação em torno de x, y ou z | Obrig. | Atendido | - |
+| 1.4.2 | Rotação em eixo arbitrário  | Obrig. | Atendido | - |
+| 1.4.3 | Escala | Obrig. | Atendido | - |
+| 1.4.4 | Cisalhamento | +0,5 | Atendido | - |
+| 1.4.5 | Espelho em relação a plano arbitrário | +0,5 | Atendido | - |
+| 1.5.1 | Luz pontual | Obrig. | Atendido | - |
+| 1.5.2 | Luz spot | +1,0 | - | - |
+| 1.5.3 | Luz direcional | +0,5 | - | - |
+| 1.5.4 | Luz ambiente | Obrig. | Atendido | - |
+| 2.1 | Eye, At point e Up | Obrig. | Atendido | - |
+| 2.2 | Distância focal e janela (xmin, xmax, ymin, ymax) | Obrig. | - | - |
+| 3.1 | Projeção em perspectiva | Obrig. | Atendido | - |
+| 3.1.1.1 | Zoom out | Obrig. | - | - |
+| 3.1.1.2 | Zoom in | Obrig. | - | - |
+| 3.1.2 | Perspectiva com um, dois e três pontos de fuga | +0,5 cada | - | - |
+| 3.2 | Projeção ortográfica | +0,5 | - | - |
+| 3.3 | Projeção oblíqua | +0,5 | - | - |
+| 5.1 | Função de pick | Obrig. | Atendido | - |
+| 5.2 | Interface gráfica | +0,5 a 1,0 | Parcial | Terminal com comandos fazer interface |
 
 
 | Biblioteca | Uso |
 | --- | --- |
 | SDL3 | Janela interativa do visualizador |
+
+
 
