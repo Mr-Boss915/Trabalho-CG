@@ -127,6 +127,7 @@ do objeto para guardar a transformação.
 | `Backspace` | Desfaz as transformações do objeto selecionado ||
 | `Esc` | Sai |
 
+### Requisitos
 
 | Item | Requisito | Peso | Situação | Comentario |
 | --- | --- | --- | --- | --- |
@@ -155,7 +156,6 @@ do objeto para guardar a transformação.
 | 3.3 | Projeção oblíqua | +0,5 | - | - |
 | 5.1 | Função de pick | Obrig. | Atendido | - |
 | 5.2 | Interface gráfica | +0,5 a 1,0 | Parcial | Terminal com comandos fazer interface |
-
 
 
 | Biblioteca | Uso |
