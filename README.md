@@ -80,8 +80,12 @@ pivot
 0.25 0.1 0.17
 shear
 0.8 0 0 0 0 0
+
+
 planos podem ou nao ser infitos
 com o uso do termo bounded apos seus parametros
+
+
 plane
 0.05 0.1 0.1
 0 0.3 0
