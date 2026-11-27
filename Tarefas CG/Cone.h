@@ -10,6 +10,7 @@ class Cone : public Object {
     Material material_;
 
 public:
-    Cone(const Vector3&, const Vector3&, const float&, const float&, const Material&);
+    bool capped_;
+    Cone(const Vector3&, const Vector3&, const float&, const float&, const Material&, bool capped = true);
     bool intersect(const Ray&, float, float, HitRecord&) const override;
 };

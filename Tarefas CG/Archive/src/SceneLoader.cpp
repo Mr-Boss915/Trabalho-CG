@@ -252,9 +252,27 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
             float n;
             in >> n;
             Material material(ka, kd, ks, n);
-            tryAttachTexture(in, material);
+            // Opcoes do cilindro, em qualquer ordem: "open" (tubo, sem tampas)
+            // e "texture <arquivo> <escala>".
+            bool capped = true;
+            std::string tok;
+            while (readToken(in, tok)) {
+                if (tok == "open") {
+                    capped = false;
+                }
+                else if (tok == "texture") {
+                    std::string path; float scale;
+                    in >> path >> scale;
+                    material.texture = std::make_shared<Texture>(Texture::load(path));
+                    material.textureScale = scale;
+                }
+                else {
+                    pushBackToken(tok);
+                    break;
+                }
+            }
             s.objects.push_back(applyTransforms(in,
-                std::make_shared<Cylinder>(B, u, H, R, material)));
+                std::make_shared<Cylinder>(B, u, H, R, material, capped)));
         }
         else if (t == "cone") {
             auto V = v3(in);
@@ -265,9 +283,27 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
             float n;
             in >> n;
             Material material(ka, kd, ks, n);
-            tryAttachTexture(in, material);
+            // Opcoes do cone, em qualquer ordem: "open" (sem o disco da base)
+            // e "texture <arquivo> <escala>".
+            bool capped = true;
+            std::string tok;
+            while (readToken(in, tok)) {
+                if (tok == "open") {
+                    capped = false;
+                }
+                else if (tok == "texture") {
+                    std::string path; float scale;
+                    in >> path >> scale;
+                    material.texture = std::make_shared<Texture>(Texture::load(path));
+                    material.textureScale = scale;
+                }
+                else {
+                    pushBackToken(tok);
+                    break;
+                }
+            }
             s.objects.push_back(applyTransforms(in,
-                std::make_shared<Cone>(V, d, H, R, material)));
+                std::make_shared<Cone>(V, d, H, R, material, capped)));
         }
         else if (t == "mesh") {
             // Formato:

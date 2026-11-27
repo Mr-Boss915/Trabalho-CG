@@ -1,8 +1,9 @@
 #include "Cylinder.h"
 #include <cmath>
 
-Cylinder::Cylinder(const Vector3& B, const Vector3& u, const float& H, const float& R, const Material& material)
-    : B_(B), u_(u.normalized()), H_(H), R_(R), material_(material) {
+Cylinder::Cylinder(const Vector3& B, const Vector3& u, const float& H, const float& R,
+    const Material& material, bool capped)
+    : B_(B), u_(u.normalized()), H_(H), R_(R), material_(material), capped_(capped) {
 }
 
 bool Cylinder::intersect(const Ray& ray, float tMin, float tMax, HitRecord& hit) const {
@@ -49,7 +50,7 @@ bool Cylinder::intersect(const Ray& ray, float tMin, float tMax, HitRecord& hit)
 
     // tampas
     float denom = ray.direction.dot(u_);
-    if (std::abs(denom) > 1e-8f) {
+    if (capped_ && std::abs(denom) > 1e-8f) {
         Vector3 centers[2] = { B_, B_ + u_ * H_ };
         Vector3 normals[2] = { -u_, u_ };
 

@@ -10,6 +10,7 @@ class Cylinder : public Object {
     Material material_;
 
 public:
-    Cylinder(const Vector3&, const Vector3&, const float&, const float&, const Material&);
+    bool capped_;
+    Cylinder(const Vector3& B, const Vector3& u, const float& H, const float& R, const Material& material, bool capped = true);
     bool intersect(const Ray&, float, float, HitRecord&)const override;
 };
