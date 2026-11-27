@@ -110,8 +110,7 @@ pivot cx cy cz             matrix m00 m01 ... m33   # 16 valores, linha a linha
 ### Terminal
  
 `list`, `select N`, `pick X Y`, `info`, `pivot X Y Z`, `translate`, `scale`, `rotatex|y|z`,
-`rotate`, `rotateq`, `shear`, `mirror`, `reset`, `export`, `cam ...` (`reset`, `eye`, `target`,
-`orbit`, `dolly`, `pan`, `walk`), `abrir CAMINHO.txt`, `recarregar`, `ajuda`, `sair`.
+`rotate`, `rotateq`, `shear`, `mirror`, `reset`, `export`, `cam`, `recarregar`, `ajuda`, `sair`.
  
 `export` imprime uma linha `matrix` com a matriz acumulada do objeto; cole-a no `.txt` depois
 do objeto para guardar a transformação.
