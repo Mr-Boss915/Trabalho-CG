@@ -128,7 +128,7 @@ do objeto para guardar a transformação.
 | `Esc` | Sai |
 
 
-| Item | Requisito | Peso | Situação | Evidência |
+| Item | Requisito | Peso | Situação | Comentario |
 | --- | --- | --- | --- | --- |
 | 1.1 | Coerência temática | Obrig. | - | - |
 | 1.2 | Todos os objetos no primeiro octante | Obrig. | - | - |
@@ -138,10 +138,10 @@ do objeto para guardar a transformação.
 | 1.4.1 | Translação | Obrig. | Atendido | - |
 | 1.4.2 | Rotação em torno de x, y ou z | Obrig. | Atendido | - |
 | 1.4.2 | Rotação em eixo arbitrário  | Obrig. | Atendido | - |
-| 1.4.3 | Escala | Obrig. | Atendido | `scale`, `Mat4::scale` |
+| 1.4.3 | Escala | Obrig. | Atendido | - |
 | 1.4.4 | Cisalhamento | +0,5 | Atendido | - |
 | 1.4.5 | Espelho em relação a plano arbitrário | +0,5 | Atendido | - |
-| 1.5.1 | Luz pontual | Obrig. | Atendido | `PointLight`, - |
+| 1.5.1 | Luz pontual | Obrig. | Atendido | - |
 | 1.5.2 | Luz spot | +1,0 | - | - |
 | 1.5.3 | Luz direcional | +0,5 | - | - |
 | 1.5.4 | Luz ambiente | Obrig. | Atendido | - |
