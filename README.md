@@ -1,7 +1,7 @@
 ## Formato da cena
  
 Tokens separados por espaço ou quebra de linha; linhas que começam com `#` são comentários.
- 
+Favor usar quebra de linha para objetos e espaco para transformacoes
 ```
 camera   eye(3) lookAt(3) up(3) fov
 janela   largura altura z          # distância do olho à janela = abs(eye.z - z)
