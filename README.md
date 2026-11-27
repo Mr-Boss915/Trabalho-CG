@@ -80,6 +80,17 @@ pivot
 0.25 0.1 0.17
 shear
 0.8 0 0 0 0 0
+planos podem ou nao ser infitos
+com o uso do termo bounded apos seus parametros
+plane
+0.05 0.1 0.1
+0 0.3 0
+0.4 0 0
+0.686 0.933 0.933
+0.686 0.933 0.933
+0.686 0.933 0.933
+30
+bounded
 
 ```
 ### Transformacoes
@@ -123,5 +134,4 @@ do objeto para guardar a transformação.
 | Biblioteca | Uso |
 | --- | --- |
 | SDL3 | Janela interativa do visualizador |
-| `stb_image.h` | Leitura de texturas JPEG (copiar para `header/`) |
-| `stb_image_write.h` | Gravação do `imagem.jpg` (copiar para `header/`) |
+
