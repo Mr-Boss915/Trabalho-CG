@@ -134,7 +134,7 @@ do objeto para guardar a transformação.
 | 1.2 | Todos os objetos no primeiro octante | Obrig. | - | - |
 | 1.3.1 | Esfera, cilindro, cone e malha | Obrig. | Atendido | - |
 | 1.3.2 | Pelo menos quatro materiais distintos | Obrig. | - | - |
-| 1.3.3 | Pelo menos uma textura | Obrig. | / | apenas plano |
+| 1.3.3 | Pelo menos uma textura | Obrig. | - | apenas plano |
 | 1.4.1 | Translação | Obrig. | Atendido | - |
 | 1.4.2 | Rotação em torno de x, y ou z | Obrig. | Atendido | - |
 | 1.4.2 | Rotação em eixo arbitrário  | Obrig. | Atendido | - |
@@ -142,8 +142,8 @@ do objeto para guardar a transformação.
 | 1.4.4 | Cisalhamento | +0,5 | Atendido | - |
 | 1.4.5 | Espelho em relação a plano arbitrário | +0,5 | Atendido | - |
 | 1.5.1 | Luz pontual | Obrig. | Atendido | `PointLight`, - |
-| 1.5.2 | Luz spot | +1,0 | Não atendido | - |
-| 1.5.3 | Luz direcional | +0,5 | Não atendido | - |
+| 1.5.2 | Luz spot | +1,0 | - | - |
+| 1.5.3 | Luz direcional | +0,5 | - | - |
 | 1.5.4 | Luz ambiente | Obrig. | Atendido | - |
 | 2.1 | Eye, At point e Up | Obrig. | Atendido | - |
 | 2.2 | Distância focal e janela (xmin, xmax, ymin, ymax) | Obrig. | - | - |
