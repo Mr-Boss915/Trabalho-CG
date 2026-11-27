@@ -11,9 +11,9 @@ light    posição(3) intensidade(3)
  
 sphere   centro(3) R   ka(3) kd(3) ks(3) n
 plane    Q(3) u(3) v(3) ka(3) kd(3) ks(3) n  [bounded] [texture arquivo escala]
-cylinder base(3) eixo(3) H R ka(3) kd(3) ks(3) n  [open] [texture arquivo escala]
-cone     base(3) eixo(3) H R ka(3) kd(3) ks(3) n  [texture arquivo escala]
-mesh     tetra | arquivo.obj  ka(3) kd(3) ks(3) n  [texture arquivo escala]
+cylinder base(3) eixo(3) H R ka(3) kd(3) ks(3) n  [open] 
+cone     base(3) eixo(3) H R ka(3) kd(3) ks(3) n
+mesh     tetra | arquivo.obj  ka(3) kd(3) ks(3) n
 ```
 Exemplo
 
