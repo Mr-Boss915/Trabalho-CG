@@ -1,11 +1,9 @@
 #pragma once
 #include "Vector3.h"
 
-// Quaternion unitario q = (w, x, y, z) = cos(a/2) + sin(a/2) * (eixo unitario).
-// Representa uma rotacao de 'a' graus em torno do eixo.
-// 
-// Rotacionar um ponto p:   p' = q * (0,p) * q^-1
-// Compor rotacoes:         q = q2 * q1                 (q1 atua primeiro)
+// q = (w, x, y, z) = cos(a/2) + sin(a/2) * (eixo unitario).
+// rotacao de 'a' graus em torno do eixo.
+
 class Quaternion {
 public:
     float w, x, y, z;
@@ -18,7 +16,7 @@ public:
     Quaternion conjugate() const;                      // inversa se |q| = 1
     Quaternion normalized() const;
 
-    // p' = q p q^-1, usando a forma expandida
+    //   p' = q p q^-1
     //   t = 2 (qv x p);  p' = p + w t + qv x t
     Vector3 rotate(const Vector3& p) const;
 };

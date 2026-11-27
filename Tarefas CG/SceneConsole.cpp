@@ -57,7 +57,7 @@ bool SceneConsole::need(bool cond, const char* msg) const {
     return cond;
 }
 
-// --------------------------------------------------------------- picking
+//  picking
 void SceneConsole::onPick(int idx, const HitRecord& h, const Ray& ray, int px, int py) {
     std::cout << "\nPICKING pixel (" << px << ", " << py << ")\n";
     if (idx < 0) {
@@ -137,8 +137,7 @@ COMANDOS (angulos em graus; transformacoes atuam no objeto SELECIONADO)
     cam dolly F                F<1 aproxima, F>1 afasta
     cam pan DIREITA CIMA       cam walk D (frente/tras)
   Cena
-    abrir CAMINHO.txt          abre outra cena (ou arraste o .txt para a janela)
-    recarregar                 recarrega a cena atual (descarta as edicoes)
+    recarregar                 recarrega a cena atual **nao funcional
   Outros: ajuda, sair
 )";
 }

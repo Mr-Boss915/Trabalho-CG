@@ -55,7 +55,7 @@ Mat4 Mat4::rotateZ(float deg) {
 }
 
 Mat4 Mat4::rotateAxis(const Vector3& axis, float deg) {
-    // Base ortonormal destra (u, v, w) --- w = eixo de rotacao.
+    // Base ortonormal (u, v, w) --- w = eixo de rotacao.
     Vector3 w = axis.normalized();
     Vector3 helper = (std::fabs(w.x) < 0.9f) ? Vector3(1.f, 0.f, 0.f)
         : Vector3(0.f, 1.f, 0.f);

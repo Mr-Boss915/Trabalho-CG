@@ -23,18 +23,6 @@ static Color col(std::istream& i) {
     return{ r,g,b };
 }
 
-// ---------------------------------------------------------------------
-// Leitura de tokens com 1 palavra de "lookahead" (sem seekg/tellg).
-//
-// tryAttachTexture precisa olhar o PROXIMO token pra decidir se e um
-// bloco "texture" opcional ou o comando do proximo objeto. Tentar usar
-// stream.tellg()/seekg() pra "devolver" um token nao lido e fragil (da
-// problema em streams de texto, principalmente no Windows com \r\n) e
-// foi a causa do bug anterior. A forma robusta e mais simples: guardar
-// o token lido numa variavel-buffer e, na proxima vez que o loop
-// principal pedir um token, devolver esse valor guardado em vez de ler
-// de novo do arquivo.
-// ---------------------------------------------------------------------
 static std::string pendingToken;
 static bool        hasPending = false;
 
@@ -52,14 +40,9 @@ static void pushBackToken(const std::string& tok) {
     hasPending = true;
 }
 
-// Depois de montar o Material de um objeto, olha se o proximo token no
-// arquivo e "texture" (caminho + escala). Se for, anexa a textura ao
-// material. Se nao for, "devolve" o token (via pushBackToken, nao via
-// seekg) para o loop principal processar normalmente - assim isso
-// funciona como um bloco OPCIONAL, sem quebrar cenas que nao usam textura.
 static void tryAttachTexture(std::istream& in, Material& m) {
     std::string tok;
-    if (!readToken(in, tok)) return; // fim do arquivo, nada a fazer
+    if (!readToken(in, tok)) return;
 
     if (tok == "texture") {
         std::string path;
@@ -69,32 +52,14 @@ static void tryAttachTexture(std::istream& in, Material& m) {
         m.textureScale = scale;
     }
     else {
-        pushBackToken(tok); // nao era pra gente: devolve pro loop principal
+        pushBackToken(tok); // devolve pro loop principal
     }
 }
 
-// ---------------------------------------------------------------------
-// Transformacoes opcionais, escritas DEPOIS de um objeto (e da textura dele):
-//
-//   translate  tx ty tz
-//   scale      sx sy sz
-//   rotatex    graus
-//   rotatey    graus
-//   rotatez    graus
-//   rotate     ax ay az graus        (eixo arbitrario, por mudanca de base)
-//   rotateq    ax ay az graus        (eixo arbitrario, por quaternio)
-//   shear      xy xz yx yz zx zy
-//   mirror     px py pz  nx ny nz    (espelho no plano por p com normal n)
-//   matrix     m00 m01 ... m33       (matriz 4x4 pronta, 16 valores por linha)
-//   pivot      cx cy cz              (centro p/ scale/rotate*/shear seguintes)
-//
-// Sao aplicadas NA ORDEM em que aparecem (a primeira linha atua primeiro).
-// Angulos em graus. 'pivot' vale ate o proximo 'pivot'; o padrao e a origem.
-// Para girar/escalar um objeto em torno de um ponto c: M = T(c) * Op * T(-c).
-// ---------------------------------------------------------------------
+
 static std::shared_ptr<Object> applyTransforms(std::istream& in,
     std::shared_ptr<Object> obj) {
-    Mat4 M;                       // acumulada: objeto -> mundo
+    Mat4 M;                      
     Vector3 pivot(0.f, 0.f, 0.f);
     bool any = false;
 
@@ -105,7 +70,7 @@ static std::shared_ptr<Object> applyTransforms(std::istream& in,
 
     std::string tok;
     while (readToken(in, tok)) {
-        if (!tok.empty() && tok[0] == '#') {      // comentario entre transformacoes
+        if (!tok.empty() && tok[0] == '#') {      
             std::string line;
             std::getline(in, line);
             continue;
@@ -137,7 +102,7 @@ static std::shared_ptr<Object> applyTransforms(std::istream& in,
             float a; in >> a;
             op = aroundPivot(Mat4::rotateAxis(ax, a));
         }
-        else if (tok == "rotateq") {            // eixo arbitrario via quaternio
+        else if (tok == "rotateq") {            
             auto ax = v3(in);
             float a; in >> a;
             op = aroundPivot(Mat4::rotateAxisQuat(ax, a));
@@ -152,7 +117,7 @@ static std::shared_ptr<Object> applyTransforms(std::istream& in,
             auto n = v3(in);
             op = Mat4::mirror(p, n);
         }
-        else if (tok == "matrix") {              // 16 valores, linha a linha (gerado por 'export')
+        else if (tok == "matrix") {              
             for (int i = 0; i < 4; ++i)
                 for (int j = 0; j < 4; ++j) in >> op.m[i][j];
         }
@@ -161,10 +126,10 @@ static std::shared_ptr<Object> applyTransforms(std::istream& in,
             continue;
         }
         else {
-            pushBackToken(tok);                    // proximo objeto/comando
+            pushBackToken(tok);                    
             break;
         }
-        M = op * M;                                // a nova atua DEPOIS das anteriores
+        M = op * M;                                
         any = true;
     }
 
@@ -176,7 +141,7 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
     std::ifstream in(f);
     if (!in) throw std::runtime_error("Nao abriu: " + f);
     Scene s;
-    hasPending = false; // seguranca: garante estado limpo entre chamadas
+    hasPending = false; // seguranca: garante estado limpo entre chamadas **nao remover
     std::string t;
     while (readToken(in, t)) {
         if (t[0] == '#') {
@@ -220,8 +185,6 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
             float n;
             in >> n;
             Material material(ka, kd, ks, n);
-            // Opcoes do plano, em qualquer ordem: "bounded" (retangulo de lados u e v)
-            // e "texture <arquivo> <escala>".
             bool bounded = false;
             std::string tok;
             while (readToken(in, tok)) {
@@ -252,8 +215,6 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
             float n;
             in >> n;
             Material material(ka, kd, ks, n);
-            // Opcoes do cilindro, em qualquer ordem: "open" (tubo, sem tampas)
-            // e "texture <arquivo> <escala>".
             bool capped = true;
             std::string tok;
             while (readToken(in, tok)) {
@@ -283,8 +244,6 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
             float n;
             in >> n;
             Material material(ka, kd, ks, n);
-            // Opcoes do cone, em qualquer ordem: "open" (sem o disco da base)
-            // e "texture <arquivo> <escala>".
             bool capped = true;
             std::string tok;
             while (readToken(in, tok)) {
@@ -306,10 +265,6 @@ Scene SceneLoader::loadFromFile(const std::string& f) {
                 std::make_shared<Cone>(V, d, H, R, material, capped)));
         }
         else if (t == "mesh") {
-            // Formato:
-            //   mesh
-            //   tetra | caminho/para/arquivo.obj
-            //   ka  kd  ks  n
             std::string source;
             in >> source;
             auto ka = col(in), kd = col(in), ks = col(in);

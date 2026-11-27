@@ -8,7 +8,7 @@ Quaternion::Quaternion(float w_, float x_, float y_, float z_)
 Quaternion Quaternion::fromAxisAngle(const Vector3& axis, float deg) {
     const float PI = 3.14159265358979323846f;
     Vector3 a = axis.normalized();
-    float h = deg * PI / 180.f * 0.5f;          // meio angulo
+    float h = deg * PI / 180.f * 0.5f;      
     float s = std::sin(h);
     return Quaternion(std::cos(h), a.x * s, a.y * s, a.z * s);
 }

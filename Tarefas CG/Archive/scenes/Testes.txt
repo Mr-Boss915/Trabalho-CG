@@ -69,7 +69,6 @@ plane
 1 1 1
 0 0 0
 30
-bounded
 texture
 madeira.jpg
 10.0

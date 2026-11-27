@@ -7,17 +7,16 @@
 #include "Quaternion.h"
 
 // Logica do editor interativo
-// Cada objeto da cena e guardado como  base  +  matriz acumulada M. Quando M
-// muda, scene.objects[i] vira TransformedObject(base, M)
+// Cada objeto da cena e guardado como  base  +  matriz acumulada M. Quando M muda, scene.objects[i] vira TransformedObject(base, M)
 class SceneEditor {
 public:
     enum class Mode { Translate, Rotate, RotateView, Scale, Shear };
     enum class Axis { X, Y, Z, All };
 
     explicit SceneEditor(Scene& scene);
-    void reset();            // relê a cena
+    void reset();
 
-    // ---- selecao -------------------------------------------------------
+    // Selecao
     float minDistance = 5.f;   // dolly nao chega mais perto do alvo que isso (escala com a cena)
     int  selected() const { return sel_; }
     void select(int index, const Vector3& pivot);   // pivot = ponto clicado
@@ -25,7 +24,7 @@ public:
     void selectNext();
     const Vector3& pivot() const { return pivot_; }
 
-    // ---- consulta / controle usados pelo console do terminal ------------
+    // Consulta
     int  count() const { return int(base_.size()); }
     const Mat4& matrix(int i) const { return M_[i]; }          // matriz acumulada do objeto i
     const std::shared_ptr<Object>& baseObject(int i) const { return base_[i]; }
@@ -37,18 +36,17 @@ public:
     void setEye(const Vector3& e) { eye_ = e;    applyCamera(); }
     void setTarget(const Vector3& t) { target_ = t; applyCamera(); }
 
-    // ---- transformacoes  -----
+	// Transformacoes
     Mode mode = Mode::Translate;
     Axis axis = Axis::All;
 
     // amount = unidade do modo
     void apply(float amount);
-    // Translate com Axis::All: arrasto no plano da tela
     void translateScreen(float dxRight, float dyUp);
     void mirror();
     void resetSelected();    // volta o objeto ao estado carregado
 
-    // ---- camera --------------------------------------------------------
+    // Camera
     void orbit(float yawDeg, float pitchDeg);   // gira o olho em torno do alvo
     void dolly(float factor);                   // factor < 1 aproxima, > 1 afasta
     void pan(float right, float up);            // desloca olho E alvo no plano da tela

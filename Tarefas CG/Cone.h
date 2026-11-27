@@ -4,7 +4,7 @@
 
 class Cone : public Object {
     Vector3 V_;       // vértice do cone
-    Vector3 d_;       // direção/eixo do cone
+    Vector3 d_;       // direção
     float   H_;       // altura
     float   R_;       // raio da base
     Material material_;

@@ -8,8 +8,7 @@
 //   origem_local  = M^-1 * origem            (ponto,   w = 1)
 //   direcao_local = M^-1 * direcao           (direcao, w = 0)
 
-// O objeto de dentro resolve a interseção como se nada tivesse mudado, e o
-// resultado volta para o mundo
+// O objeto de dentro resolve a interseção como se nada tivesse mudado, e o resultado volta para o mundo
 
 class TransformedObject : public Object {
     std::shared_ptr<Object> inner_;

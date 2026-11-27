@@ -8,7 +8,7 @@ SceneEditor::SceneEditor(Scene& scene) : scene_(scene) { reset(); }
 void SceneEditor::reset() {
     sel_ = -1;
     pivot_ = Vector3(0, 0, 0);
-    base_ = scene_.objects;                       // o que foi carregado (ja com os comandos do .txt)
+    base_ = scene_.objects;                       
     M_.assign(base_.size(), Mat4());
     eye_ = scene_.camera.getEye();
     target_ = scene_.camera.getLookAt();
@@ -16,7 +16,7 @@ void SceneEditor::reset() {
     fov_ = scene_.camera.getFov();
 }
 
-// ------------------------------------------------------------ selecao
+// selecao
 void SceneEditor::select(int index, const Vector3& pivot) {
     if (index < 0 || index >= int(base_.size())) { sel_ = -1; return; }
     sel_ = index;
@@ -28,13 +28,13 @@ void SceneEditor::selectNext() {
     sel_ = (sel_ + 1) % int(base_.size());
 }
 
-// ------------------------------------------------------ transformacoes
+// transformacoes
 Vector3 SceneEditor::axisVector() const {
     switch (axis) {
     case Axis::X: return Vector3(1, 0, 0);
     case Axis::Y: return Vector3(0, 1, 0);
     case Axis::Z: return Vector3(0, 0, 1);
-    default:      return (-scene_.camera.getW()).normalized();   // "todos" = eixo do olhar
+    default:      return (-scene_.camera.getW()).normalized();  
     }
 }
 
@@ -119,7 +119,7 @@ void SceneEditor::resetSelected() {
     rebuild(sel_);
 }
 
-// -------------------------------------------------------------- camera
+// camera
 void SceneEditor::applyCamera() {
     scene_.camera = Camera(eye_, target_, up_, fov_);
 }

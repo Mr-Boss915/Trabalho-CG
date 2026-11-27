@@ -1,28 +1,7 @@
-#define _CRT_SECURE_NO_WARNINGS   // MSVC: permite fopen sem aviso C4996
-// Visualizador interativo do ray tracer (SDL3).
-//
-//   viewer cena.txt [largura]
-//
-// MOUSE
-//   clique esquerdo ........ PICKING: seleciona o objeto sob o cursor (o ponto
-//                            clicado vira o PIVOT das rotacoes/escala/cisalhamento)
-//   arrastar esquerdo ...... aplica a transformacao do modo atual no selecionado
-//   arrastar direito ....... orbita a camera em torno do alvo
-//   arrastar do meio ....... pan da camera        roda: aproxima/afasta
-// TECLADO
-//   T translacao   R rotacao (eixos x/y/z)   V rotacao em torno do olhar (quaternio)
-//   C escala       H cisalhamento            M espelho (plano pelo pivot)
-//   X / Y / Z eixo      ESPACO todos os eixos (translacao: arrasta no plano da tela)
-//   setas / PgUp PgDn ... transformacao por teclado (passo fixo)
-//   W A S D Q E ........ camera: frente, esquerda, tras, direita, sobe, desce
-//   TAB proximo objeto   BACKSPACE desfaz transformacoes do selecionado
-//   F2 salva captura (captura.ppm)   ESC sai
-// TERMINAL
-//   Cada clique imprime no terminal as informacoes do objeto (picking). Voce
-//   tambem pode DIGITAR comandos no terminal (translate, rotatey 30, cam orbit
-//   20 0, export ...). Digite "ajuda" para a lista completa.
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>   // SDL3: permite usar o main(int, char**) normal
+#include <SDL3/SDL_main.h>
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
@@ -39,18 +18,12 @@
 #include "SceneEditor.h"
 #include "SceneConsole.h"
 
-// ---------------------------------------------------------------------
-// CENA PADRAO: caminho montado a partir da localizacao deste arquivo-fonte
-// (__FILE__), entao nao depende da Working Directory nem das propriedades
-// do projeto:   <pasta do projeto>/Archive/scenes/Testes.txt
-// Para abrir outra cena, troque o nome do arquivo na ultima linha.
-// Um argumento na linha de comando continua tendo prioridade.
-// ---------------------------------------------------------------------
+
 namespace fs = std::filesystem;
 
 static fs::path cenaPadrao() {
     fs::path sourceFile(__FILE__);
-    fs::path projectDirectory = sourceFile.parent_path();   // o .cpp fica na pasta do projeto
+    fs::path projectDirectory = sourceFile.parent_path();
     return projectDirectory / "Archive" / "scenes" / "Testes.txt";
 }
 
@@ -66,7 +39,6 @@ static void savePPM(const char* path, const std::vector<uint32_t>& px, int W, in
 }
 
 int main(int argc, char** argv) {
-    // Cena a abrir: argumento da linha de comando, se houver; senao a cena padrao acima.
     std::string scenePath = (argc > 1) ? std::string(argv[1]) : cenaPadrao().string();
 
     Scene scene;
@@ -74,9 +46,7 @@ int main(int argc, char** argv) {
     catch (const std::exception& e) { std::cerr << "Erro: " << e.what() << "\n"; return 1; }
 
     Renderer renderer;
-    float dist = Renderer::windowDistance(scene);   // fixa: a camera vai se mover
-    // ESCALA DA CENA: as velocidades abaixo foram pensadas para cenas em centimetros
-    // (distancia da janela ~200). Em metros (~0.3) tudo e multiplicado por 'unit'.
+    float dist = Renderer::windowDistance(scene);
     float unit = dist / 200.f;
     const int   W = (argc > 2) ? std::max(200, std::atoi(argv[2])) : 800;
     const float wj = scene.janela.getJanela().x, hj = scene.janela.getJanela().y;
@@ -86,8 +56,6 @@ int main(int argc, char** argv) {
     editor.minDistance = 5.f * unit;
     SceneConsole console(scene, editor, renderer, W, H, dist);
 
-    // scenePath ja definido no inicio do main
-    // Abre outra cena sem fechar o viewer (comando 'abrir', 'recarregar' ou arrastar o .txt na janela)
     auto openScene = [&](const std::string& path) {
         try {
             Scene ns = SceneLoader::loadFromFile(path);
@@ -108,8 +76,7 @@ int main(int argc, char** argv) {
         }
         };
 
-    // Leitura do terminal em outra thread (getline bloqueia); as linhas entram
-    // numa fila e sao executadas no laco principal, onde mexer na cena e seguro.
+    // Leitura do terminal em outra thread (getline bloqueia); as linhas entram numa fila e sao executadas no laco principal, onde mexer na cena e seguro.
     std::mutex qMutex;
     std::queue<std::string> cmdQueue;
     std::thread([&] {
@@ -163,12 +130,9 @@ int main(int argc, char** argv) {
         SDL_RenderPresent(ren);
         };
 
-    // sensibilidades (por pixel de arrasto)
-    // Passo da camera por tecla (W A S D Q E), em unidades de cena de 200 de janela:
-    // AUMENTE para andar mais rapido, DIMINUA para andar mais devagar.
+    // sensibilidade
     const float kCamStep = 10.f;
     const float kMove = 1.0f, kRot = 0.5f, kScale = 0.005f, kShear = 0.005f;
-    // passos do teclado
     const float sMove = 10.f, sRot = 5.f, sScale = 0.05f, sShear = 0.05f;
 
     auto dragAmount = [&](float dx) {
@@ -217,7 +181,7 @@ int main(int argc, char** argv) {
                 if (e.button.button == SDL_BUTTON_LEFT) { lDown = false; if (objMoved) { console.printSelected(); objMoved = false; } }
                 if (e.button.button == SDL_BUTTON_RIGHT) { rDown = false; if (camMoved) { console.printCamera();   camMoved = false; } }
                 if (e.button.button == SDL_BUTTON_MIDDLE) { mDown = false; if (camMoved) { console.printCamera();   camMoved = false; } }
-                input = true;                      // dispara a renderizacao final
+                input = true;      
                 break;
 
             case SDL_EVENT_MOUSE_MOTION:

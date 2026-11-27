@@ -1,3 +1,5 @@
+//descontinuado motivos no main
+
 #define GL_SILENCE_DEPRECATION
 
 #include "Display.h"
@@ -39,10 +41,10 @@ void Display::show(const Framebuffer& framebuffer, const char* title)
     // ---------------------------------------------------------
 
     GLFWwindow* window = glfwCreateWindow(framebuffer.width(),
-                                          framebuffer.height(),
-                                          title,
-                                          nullptr,
-                                          nullptr);
+        framebuffer.height(),
+        title,
+        nullptr,
+        nullptr);
 
     if (window == nullptr)
     {
@@ -69,7 +71,7 @@ void Display::show(const Framebuffer& framebuffer, const char* title)
     // Configuração OpenGL extremamente simples
     // ---------------------------------------------------------
 
-    glViewport( 0, 0, framebuffer.width(), framebuffer.height());
+    glViewport(0, 0, framebuffer.width(), framebuffer.height());
 
     // Não usamos iluminação OpenGL.
     // Não usamos depth buffer.

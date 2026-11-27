@@ -43,16 +43,12 @@ Color Renderer::shade(const Scene& s, const Ray& r, const HitRecord& h, bool ver
     // STUDENT TODO 5: modelo de Phong (ambiente + difusa + especular).
     const Material& m = *h.material;
 
-    // Se o material tem uma textura valida, ela substitui a cor solida
-    // (kd/ka) usada nas componentes ambiente e difusa. ks (especular)
-    // continua solido - o brilho de destaque nao costuma ser texturizado
-    // num modelo simples como este.
+	// Se o material tem uma textura valida substitui a cor difusa e ambiente pela amostra da textura - apenas para plaano
     bool    hasTex = (m.texture != nullptr) && m.texture->valid();
     Color   surface = hasTex ? m.texture->sample(h.u, h.v) : m.kd;
     Color   ambient = hasTex ? surface : m.ka;
 
-    // IMPORTANTE: usar "ambient"/"surface" aqui (nao m.ka/m.kd direto) -
-    // sao eles que carregam a cor vinda da textura quando ela existe.
+	// usar "ambient"/"surface" devida cor vir da textura
     Color   ambPart = ambient * s.ambientLight;
     Color   out = ambPart;
     Vector3 N = h.normal.normalized();
@@ -148,7 +144,7 @@ void Renderer::render(const Scene& s, Framebuffer& fb)const {
 
     // distancia olho -> janela, medida em z (janela.z e a coordenada z do plano)
     float dist = std::abs(eye.z - s.janela.getJanela().z);
-    if (dist < 1e-6f) dist = std::abs(s.janela.getJanela().z); // seguranca
+    if (dist < 1e-6f) dist = std::abs(s.janela.getJanela().z);
     const Vector3 center = eye + (-w) * dist;   // centro da janela no mundo
 
     std::cout << " H " << fb.height() << std::endl;
@@ -168,8 +164,6 @@ void Renderer::render(const Scene& s, Framebuffer& fb)const {
             fb.setPixel(x, y, closestHit(s, r, h) ? shade(s, r, h) : s.background);
         }
     }
-
-    // Ao final, imprime a cor do ponto central (raio olho -> lookAt).
     centerColor(s, true);
 }
 
@@ -201,7 +195,6 @@ void Renderer::renderTo(const Scene& s, int W, int H, float dist, int step,
 
     auto to8 = [](float v) { return uint32_t(std::min(255.f, std::max(0.f, v * 255.f + 0.5f))); };
 
-    // cada tarefa processa linhas de blocos: by, by+nThreads, ...
     const int blocksY = (H + step - 1) / step;
     unsigned nT = std::max(1u, std::thread::hardware_concurrency());
     auto work = [&](unsigned tid) {
