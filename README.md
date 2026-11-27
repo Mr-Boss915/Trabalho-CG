@@ -1,5 +1,5 @@
 ## Formato da cena
- 
+O txt com o conteudo da cena se encontra em arquives/scenes e para alterar o arquivo que o main pega e em viewer.cpp
 Tokens separados por espaço ou quebra de linha; linhas que começam com `#` são comentários.
 Favor usar quebra de linha para objetos e espaco para transformacoes
 ```
