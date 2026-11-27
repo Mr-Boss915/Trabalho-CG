@@ -124,9 +124,7 @@ do objeto para guardar a transformação.
 | `T` `R` `V` `C` `H` `M` | Modo: translação, rotação, rotação em torno do olhar, escala, cisalhamento, espelho |
 | `X` `Y` `Z` / Espaço | Eixo da transformação / todos |
 | `W A S D Q E` | Move a câmera |
-| `Home` | Volta a câmera ao estado do `.txt` |
-| `Backspace` | Desfaz as transformações do objeto selecionado |
-| `F2` | Salva `captura.ppm` |
+| `Backspace` | Desfaz as transformações do objeto selecionado ||
 | `Esc` | Sai |
 
 
